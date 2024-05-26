@@ -2,45 +2,49 @@ package com.company.enroller.e2e.authentication;
 
 import com.company.enroller.e2e.BasePage;
 import com.company.enroller.e2e.Const;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.FindBys;
-import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.List;
 
 public class LoginPage extends BasePage {
 
     @FindBy(css = "div > input + button")
-    WebElement loginBtn;
+    @CacheLookup
+    private WebElement loginBtn;
 
     @FindBy(css = "h1 + div > h2 + button")
-    WebElement logoutBtn;
+    @CacheLookup
+    private WebElement logoutBtn;
 
     @FindBy(css = "div > input")
-    WebElement loginInput;
+    @CacheLookup
+    private WebElement loginInput;
 
     @FindBy(css = "h1 + div > label")
-    WebElement loginLabel;
+    @CacheLookup
+    private WebElement loginLabel;
 
     @FindBy(css = "h1 + div > h2")
-    WebElement welcomeLabel;
+    @CacheLookup
+    private WebElement welcomeLabel;
 
-    @FindBy(xpath = "//*[contains(text(), \"" + Const.ADD_NEW_MEETING_BTN_LABEL + "\")]")
-    WebElement addNewMeetingBtn;
+    @FindBy(xpath = "//*[contains(text(), \"" + Const.NEW_MEETING_BTN_LABEL + "\")]")
+    @CacheLookup
+    private WebElement addNewMeetingBtn;
 
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(this.driver, this);
     }
 
-    public void setLogin(String login) {
+    public void loginAs(String login) {
         this.loginInput.sendKeys(login);
-    }
-
-    public void pressLoginBtn() {
         this.click(this.loginBtn);
     }
 
@@ -63,6 +67,4 @@ public class LoginPage extends BasePage {
     public String getWelcomeLabelText() {
         return this.getElementText(this.welcomeLabel).replaceAll("\\s", "");
     }
-
-
 }
