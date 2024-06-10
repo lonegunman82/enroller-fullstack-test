@@ -24,18 +24,8 @@ public class BaseTests {
     @Autowired
     private MeetingRestController meetingRestController;
 
-    @BeforeAll
-    void dbInit() {
 
-        for (int i = 0; i < 10; i++) {
-            try {
-                this.meetingRestController.deleteMeeting(i);
-            } catch (Exception e) {
-                System.out.println("Removed " + i + " meetings");
-                break;
-            }
-        }
-
+    protected void dbInit() {
         Participant userI = new Participant();
         userI.setLogin(Const.USER_I_NAME);
 
@@ -57,6 +47,18 @@ public class BaseTests {
 
         this.meetingRestController.addMeeting(meetingI);
         this.meetingRestController.addMeeting(meetingII);
+    }
+
+
+    protected void removeAllMeeting() {
+        for (int i = 0; i < 10; i++) {
+            try {
+                this.meetingRestController.deleteMeeting(i);
+            } catch (Exception e) {
+                System.out.println("Removed " + i + " meetings");
+                break;
+            }
+        }
     }
 
 }

@@ -20,26 +20,40 @@ public class MeetingsTests extends BaseTests {
 
     @BeforeEach
     void setup() {
+        this.dbInit();
         this.driver = WebDriverManager.chromedriver().create();
         this.page = new MeetingsPage(driver);
         this.loginPage = new LoginPage(driver);
         this.page.get(Const.HOME_PAGE);
+        this.page.sleep(10000);
     }
 
 
     @Test
-    @DisplayName("[SPOTKANIA.1] The meeting should be added to your meeting list.")
+    @DisplayName("[SPOTKANIA.1] The meeting should be added to your meeting list. It should contain a title and description.")
     void addNewMeeting() {
         this.loginPage.loginAs(Const.USER_I_NAME);
         this.page.addNewMeeting(Const.MEETING_III_TITLE, Const.MEETING_DESC);
         // Asserts
         assertThat(this.page.getMeetingByTitle(Const.MEETING_III_TITLE)).isNotNull();
+        // TODO: Dodaj sprawdzenie czy poprawnie został dodany opis.
+        // TODO: Dodaj sprawdzenie czy zgadza się aktualna liczba spotkań.
     }
 
+    // @Test
+    // TODO: Sprawdź czy użytkownik może dodać spotkanie bez nazwy. Załóż że nie ma takiej możliwości a warunkiem
+    //  jest nieaktywny przycisk "Dodaj".
+
+    // @Test
+    // TODO: Sprawdź czy użytkownik może poprawnie zapisać się do spotkania.
+
+    // @Test
+    // TODO: Sprawdź czy użytkownik może usunąć puste spotkanie.
 
     @AfterEach
     void exit() {
         this.page.quit();
+        this.removeAllMeeting();
     }
 
 }

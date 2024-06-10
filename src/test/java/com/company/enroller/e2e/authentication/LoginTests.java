@@ -20,6 +20,7 @@ public class LoginTests extends BaseTests {
 
     @BeforeEach
     void setup() {
+        this.dbInit();
         this.driver = WebDriverManager.chromedriver().create();
         this.page = new LoginPage(driver);
         this.page.get(Const.HOME_PAGE);
@@ -41,6 +42,7 @@ public class LoginTests extends BaseTests {
             "The user should be able to see all meetings")
     void correctLoginName() {
         this.page.loginAs(Const.USER_I_NAME);
+        this.page.sleep(10000);
         // Asserts
         List<String> participants = this.page.getParticipantsListForMeeting(Const.MEETING_I_TITLE);
         assertThat(this.page.getWelcomeLabelText()).isEqualTo("Witaj" + Const.USER_I_NAME + "!");
@@ -53,6 +55,7 @@ public class LoginTests extends BaseTests {
     @AfterEach
     void exit() {
         this.page.quit();
+        this.removeAllMeeting();
     }
 
 }

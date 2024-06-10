@@ -27,10 +27,6 @@ public class MeetingsPage extends BasePage {
         super(driver);
     }
 
-
-    public MeetingsPage(WebDriver driver, Integer sec) {
-        super(driver, sec);
-    }
     public void addNewMeeting(String title, String desc) {
         this.click(this.addNewMeetingBtn);
         this.meetingTitleInput.sendKeys(title);
