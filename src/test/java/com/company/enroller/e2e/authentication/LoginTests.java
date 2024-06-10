@@ -42,7 +42,6 @@ public class LoginTests extends BaseTests {
             "The user should be able to see all meetings")
     void correctLoginName() {
         this.page.loginAs(Const.USER_I_NAME);
-        this.page.sleep(10000);
         // Asserts
         List<String> participants = this.page.getParticipantsListForMeeting(Const.MEETING_I_TITLE);
         assertThat(this.page.getWelcomeLabelText()).isEqualTo("Witaj" + Const.USER_I_NAME + "!");
