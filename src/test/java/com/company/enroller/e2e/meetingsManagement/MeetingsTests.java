@@ -25,7 +25,6 @@ public class MeetingsTests extends BaseTests {
         this.page = new MeetingsPage(driver);
         this.loginPage = new LoginPage(driver);
         this.page.get(Const.HOME_PAGE);
-        this.page.sleep(10000);
     }
 
 
