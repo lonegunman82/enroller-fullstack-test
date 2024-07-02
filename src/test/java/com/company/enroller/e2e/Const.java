@@ -14,6 +14,7 @@ public class Const {
     public final static String MEETING_I_TITLE = "Meeting A";
     public final static String MEETING_II_TITLE = "Meeting B";
     public final static String MEETING_III_TITLE = "Meeting C";
+    public final static String MEETING_IV_TITLE = "Meeting D";
     public final static String MEETING_DESC = "Meeting Description";
 
 
@@ -21,4 +22,5 @@ public class Const {
     // LABELS
     public final static String NEW_MEETING_BTN_LABEL = "Dodaj nowe spotkanie";
 
+    public static int INITIAL_MEETING_COUNT;
 }
